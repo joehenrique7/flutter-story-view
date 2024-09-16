@@ -75,6 +75,8 @@ class FlutterStoryView extends StatefulWidget {
   // Padding of indicator
   final EdgeInsets? indicatorPadding;
 
+  final Function()? onTapUser;
+
   FlutterStoryView({
     required this.onComplete,
     required this.onPageChanged,
@@ -93,6 +95,7 @@ class FlutterStoryView extends StatefulWidget {
     this.replyButtonText = "Reply",
     this.onReplyTap,
     this.indicatorPadding = const EdgeInsets.only(top: 40.0),
+    this.onTapUser,
   });
 
   @override
@@ -371,17 +374,21 @@ class _FlutterStoryViewState extends State<FlutterStoryView>
                         width: 10,
                       ),
                       if (widget.userInfo!.profileUrl != null)
-                        Container(
-                          width: 45,
-                          height: 45,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
-                            child: CachedNetworkImage(
-                              imageUrl: widget.userInfo!.profileUrl!,
-                              fit: BoxFit.cover,
+                        GestureDetector(
+                          onTap: onTapUser,
+                          child: 
+                          Container(
+                            width: 45,
+                            height: 45,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: CachedNetworkImage(
+                                imageUrl: widget.userInfo!.profileUrl!,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
+                        ), 
                       const SizedBox(
                         width: 10,
                       ),
@@ -391,10 +398,12 @@ class _FlutterStoryViewState extends State<FlutterStoryView>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             if (widget.userInfo!.username != null) ...[
-                              Text(
+                              GestureDetector(
+                                onTap: onTapUser
+                              child: Text(
                                 widget.userInfo!.username!,
                                 style: const TextStyle(fontSize: 16, color: Colors.white),
-                              ),
+                              )),
                               const SizedBox(
                                 height: 2,
                               ),
