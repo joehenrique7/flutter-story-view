@@ -393,7 +393,7 @@ class _FlutterStoryViewState extends State<FlutterStoryView>
                             if (widget.userInfo!.username != null) ...[
                               Text(
                                 widget.userInfo!.username!,
-                                style: const TextStyle(fontSize: 16),
+                                style: const TextStyle(fontSize: 16, color: Colors.white),
                               ),
                               const SizedBox(
                                 height: 2,
